@@ -1109,5 +1109,70 @@ document.addEventListener('keydown', e => {
 carregarStorage();
 render();
 </script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-action]");
+    if (!el) return;
+
+    const action = el.dataset.action;
+
+    switch (action) {
+
+      case "open-tx-modal":
+        document.getElementById("modalOverlay").classList.add("open");
+        break;
+
+      case "close-tx-modal":
+        document.getElementById("modalOverlay").classList.remove("open");
+        break;
+
+      case "open-card-modal":
+        document.getElementById("cardOverlay").classList.add("open");
+        break;
+
+      case "close-card-modal":
+        document.getElementById("cardOverlay").classList.remove("open");
+        break;
+
+      case "open-confirm":
+        document.getElementById("confirmOverlay").classList.add("open");
+        break;
+
+      case "close-confirm":
+        document.getElementById("confirmOverlay").classList.remove("open");
+        break;
+
+      case "save-tx":
+        alert("Salvar transação (ainda não implementado)");
+        break;
+
+      case "filter-tx":
+        alert("Filtro: " + el.dataset.filter);
+        break;
+
+      case "toast":
+        alert(el.dataset.message);
+        break;
+
+      case "nav-mes":
+        alert("Mudar mês: " + el.dataset.delta);
+        break;
+
+      case "set-tipo":
+        document.querySelectorAll(".tipo-btn").forEach(b => b.classList.remove("active-rec","active-desp"));
+
+        if (el.dataset.tipo === "receita") {
+          el.classList.add("active-rec");
+        } else {
+          el.classList.add("active-desp");
+        }
+        break;
+    }
+  });
+
+});
+</script>
 </body>
 </html>
